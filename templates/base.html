@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <!-- font-awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- css -->
+    <link rel="stylesheet" href="../static/css/style.css">
+    {% block css %}{% endblock %}
+    <!-- JS -->
+    <script src="../static/js/script.js"></script>
+    {% block js %}{% endblock %}
+</head>
+<body>
+    <!-- header -->
+    <header>
+        <a href="#" class="logo"><img src="../static/images/rice_logo.png" alt="">巷弄稻香</a>
+        <!-- RWD Menu Bar -->
+        <div id="menu-bar" class="fas fa-bars"></div>
+        <nav class="navbar">
+            <a href="#home">最新消息</a>
+            <a href="#category">景點介紹</a>
+            <a href="#menu">菜單</a>
+            <a href="#gallery">美食圖片</a>
+            <a href="#review">評論</a>
+            <a href="#order">訂購</a>
+        </nav>
+    </header>
+    {% block Adarea %}
+    {% endblock %}
+
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

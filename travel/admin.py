@@ -1,6 +1,6 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import myNews
+from .models import myTravel
 
-admin.site.register(myNews)
+admin.site.register(myTravel)

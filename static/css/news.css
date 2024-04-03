@@ -1,0 +1,21 @@
+.newsInfo{
+    clear: both;    /* 清除 float 功能 */
+    padding: 2%; /* 內部距離上下左右都是 2% */
+}
+
+.newsImg{
+    float: left;
+    width: 250px;
+}
+
+.newsImg img{
+    width: 100%;
+}
+.newsContent{
+    float: left;
+    width: 75%;
+    height: 250px;
+    margin-left: 2%;
+    text-overflow: ellipsis; /* 當文字超出設定高度時 */
+    overflow: hidden;
+}
