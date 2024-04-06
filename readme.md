@@ -116,6 +116,23 @@ show columns from (table_name)
 ```
 - table_name: 要顯示的資料表名稱
 
+#### 查詢MySQL 目錄
+```
+show global variables like '%datadir%';
+```
+
+#### 匯出 (備份)
+- 先進入專案目錄
+```
+mysqldump -u root -p (database_name) > (name.sql)
+```
+```
+mysqldump --no-default -u root -p (database_name) > (name.sql)
+```
+
+#### 匯入
+
+
 ### 使用 MySQL 為專案資料庫
 
 #### 設定 settings.py
@@ -151,6 +168,79 @@ python manage.py createsuperuser
 ```
 - 按照提示輸入帳號密碼即可登入 Django 後台
 
+### MySQL vs Django 資料庫指令
+
+#### 查詢所有欄位資料
+- mysql: select * from (tabel)
+- django: (model_class).objects.all()
+
+#### 查詢所有欄位資料，並依 id 遞增排序
+- mysql: select * from (tabel) order by id
+- django: (model_class).objects.all().order_by('id')
+
+#### 查詢所有欄位資料，並依 id 和 price欄位 遞增排序
+- mysql: select * from (tabel) order by id, price
+- django: (model_class).objects.all().order_by('id', 'price')
+
+#### 查詢標題為 「xxxxx」的資料 (有可能有此資料，有可能沒有資料時, django使用filter)
+- mysql: select * from (tabel) where title = 'xxxxx'
+- django: (model_class).objects.filter(title='xxxxx')
+
+#### 查詢欄位 id 為12的資料 (只獲取單個資料， 且確定此資料存在時, django 才可以使用 get)
+- mysql: select * from (tabel) where id = 12
+- django: (model_class).objects.get(id=12)
+
+#### 查詢 price 價格 大於 5000元的資料
+- mysql: select * from (tabel) where price > 5000
+- django: (model_class).objects.filter(price__gt=5000)
+    - gt: greater than
+
+#### 查詢 price 價格 小於 5000元的資料
+- mysql: select * from (tabel) where price < 5000
+- django: (model_class).objects.filter(price__lt=5000)
+    - lt: less than
+
+#### 查詢 price 價格 大於等於 5000元的資料
+- mysql: select * from (tabel) where price >= 5000
+- django: (model_class).objects.filter(price__gte=5000)
+    - gte: greater than , equal 
+
+#### 查詢 price 價格 小於等於 5000元的資料
+- mysql: select * from (tabel) where price <= 5000
+- django: (model_class).objects.filter(price__lte=5000)
+    - lt: less than , equal
+
+#### 查詢 price 價格包含 1000 2000 3000 的資料
+- mysql: select * from (tabel) where price in (1000, 2000, 3000)
+- django: (model_class).objects.filter(price__in=[1000, 2000, 3000])
+
+#### 關鍵字查詢
+
+##### 查詢標題有 「xxx」 的資料
+- mysql: select * from (tabel) where title like '%xxx%'
+- django: (model_class).objects.filter(title__contains='xxx')
+
+##### 查詢開頭是 「xxx」 的資料
+- mysql: select * from (tabel) where title like 'xxx%'
+- django: (model_class).objects.filter(title__startswith='xxx')
+
+##### 查詢結尾是 「xxx」 的資料
+- mysql: select * from (tabel) where title like '%xxx'
+- django: (model_class).objects.filter(title__endswith='xxx')
+
+#### 查詢資料， 並只顯示五筆資料
+- mysql: select * from (tabel) limit 5
+    - limit: 這個語法只限於mysql 相關資料庫使用 (mssql==> select top 5 from (tabel))
+- django: (model_class).objects.all()[:5]
+
+#### 查詢資料 標題為 xxx 只顯示五筆資料
+- mysql: select * from (tabel) where title like '%xxx%' limit 5
+- django: (model_class).objects.filter(title__contains='xxx')[:5]
+
+#### 查詢資料欄 是否為空值: => null
+- mysql: select * from (tabel) where create_data is null
+- django: (model_class).objects.filter(create_data__isnull=True)
+
 ## 新增 Django 後端資料
 
 ### models.py
@@ -160,3 +250,4 @@ python manage.py createsuperuser
 - 註冊資料表內容至後端 admin 
 
 ## 透過爬蟲 利用外部資料填入資料庫
+- 本次專案 travel.py & t_sql.py

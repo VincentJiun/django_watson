@@ -19,10 +19,12 @@ from django.urls import path, include
 
 from news.views import index, news
 from travel.views import travelInfo
+from product.views import productInfo
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name='index'),
     path('news/', news, name='news'),
     path('travel/', travelInfo, name='travelInfo'),
+    path('product/', productInfo, name='productInfo'),
 ]

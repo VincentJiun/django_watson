@@ -1,0 +1,32 @@
+.searchBar{
+    height: 100px;
+    padding: 100px;
+}
+
+.travel{
+    max-width: 100%;
+    margin-top: 60px;
+}
+
+.travel .travelInfo{
+    width: 23%;
+    float: left;
+    height: 350px;
+    margin-left: 1.5%;
+}
+
+.travelInfo img{
+    width: 100%;
+}
+
+.travelInfo span{
+    color: #c3c3c3;
+    font-size: 18px;
+}
+
+.pages{
+    float: left;
+    height: 60px;
+    padding-top: 100px;
+    padding-left: 45%;
+}

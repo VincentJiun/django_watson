@@ -1,7 +1,40 @@
 {% extends 'base.html' %}
 
-{% block title %}Travel{% endblock %}
+{% block title %}旅遊景點{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="../static/css/travel.css">
+{% endblock %}
 
 {% block content %}
-
+<div class="searchBar">
+    <form action="" method="get">
+        關鍵字查詢: <input type="text" name="qtravel" />
+        <p></p>
+        價格範圍: <input type="text" name="startp" /> ～　<input type="text" name="endp" />
+        <input type="submit" value="查詢" />
+    </form>
+</div>
+<div class="travel">
+    {% for row in data %}
+        <div class="travelInfo">
+            <img src="{{row.photo_url}}" alt="">
+            <p>{{row.title}}</p>
+            <span>NT:$ {{row.price}}</span>
+            <br/>
+            <span>{{row.created_date}}</span>
+        </div>
+    {% endfor %}
+</div>
+<!-- 分頁 -->
+<div class="pages">
+    <!-- 如果有上一頁資料內容 -->
+    {% if data.has_previous %}  
+        <a href="?page={{data.previous_page_number}}&qtravel={{travel_key}}&startp={{start_price}}&endp={{end_price}}">上一頁</a>
+    {% endif %}
+    <!-- 如果有下一頁資料內容 -->
+    {% if data.has_next %}
+        <a href="?page={{data.next_page_number}}&qtravel={{travel_key}}&startp={{start_price}}&endp={{end_price}}">下一頁</a>
+    {% endif %}
+</div>
 {% endblock %}
