@@ -124,14 +124,20 @@ show global variables like '%datadir%';
 #### 匯出 (備份)
 - 先進入專案目錄
 ```
-mysqldump -u root -p (database_name) > (name.sql)
+mysqldump -u root -p (database_name) > (backup.sql)
 ```
 ```
-mysqldump --no-default -u root -p (database_name) > (name.sql)
+mysqldump --no-default -u root -p (database_name) > (backup.sql)
 ```
+```
+mysqldump -h localhost -u root -p myDatabase > backup.sql
+```
+- 解決: ERROR: ASCII '\0' appeared in the statement, but this is not allowed unless option --binary-mode is enabled and mysql is run in non-interactive mode. Set --binary-mode to 1 if ASCII '\0' is expected. Query: '-'.
 
 #### 匯入
-
+```
+mysql -u root -p myDatabase < backup.sql
+```
 
 ### 使用 MySQL 為專案資料庫
 
