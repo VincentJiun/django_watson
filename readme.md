@@ -248,6 +248,18 @@ python manage.py createsuperuser
 - mysql: select * from (tabel) where create_data is null
 - django: (model_class).objects.filter(create_data__isnull=True)
 
+### MySQL 修改指令
+- 必須先選擇需要修改的資料: 若沒有下條件式，會全部都被修改
+```
+update (table) set (column)=value where (條件式);
+```
+
+### MySQL 刪除資料
+- 必須先選擇需要刪除的資料: 若沒有下條件式，會全部都被刪除
+```
+delete from (table) where (條件式);
+```
+
 ## 新增 Django 後端資料
 
 ### models.py
@@ -259,3 +271,14 @@ python manage.py createsuperuser
 ## 透過爬蟲 利用外部資料填入資料庫
 - 本次專案 travel.py & t_sql.py -> travel app
 - 本次專案 goods.py & t_sql.py -> product app
+
+## 透過 Django 新增資料庫內容
+- 本次專案練習: contact app
+- 會員新增練習: member app
+
+## 加密方法
+
+### MD5 加密 (hashCode) 雜湊
+- 範例: code01.py
+### SHA256
+- 範例: code02.py

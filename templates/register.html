@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block title %}Register{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="../static/css/register.css">
+{% endblock %}
+
+{% block js %}
+<script>
+    function checkPassword() {
+        var p = document.getElementsByName("uPassword")[0].value;
+        var p2 = document.getElementsByName("rePassword")[0].value;
+        if (p==p2){
+            return true;
+        }else{
+            alert("密碼輸入有誤，請重新確認!");
+            return false;
+        }
+    }
+</script>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="contact_title">會員註冊</h2>
+    <span>{{msg}}</span>
+    <form action="" class="member_register" method="post" onsubmit="return checkPassword()">
+        {% csrf_token %}
+        <div class="form_grop">
+            <label for="">姓名</label>
+            <input type="text" name="uName" class="form_control" required />
+        </div>
+        <div class="form_grop">
+            <label for="">Email</label>
+            <input type="email" name="uEmail" class="form_control" required />
+        </div>
+        <div class="form_grop">
+            <label for="">輸入密碼</label>
+            <input type="password" name="uPassword" class="form_control" required />
+        </div>
+        <div class="form_grop">
+            <label for="">確認密碼</label>
+            <input type="password" name="rePassword" class="form_control" required />
+        </div>
+        <div class="form_grop">
+            <label for="">性別</label>
+            <input type="radio" name="uSex" value="M" checked />男
+            <input type="radio" name="uSex" value="F" />女
+        </div>
+        <div class="form_grop">
+            <label for="">生日</label>
+            <input type="text" name="uBirthday" class="form_control" required />
+        </div>
+        <div class="form_grop">
+            <label for="">地址</label>
+            <input type="text" name="uAddress" class="form_control" required />
+        </div>
+        <div class="form_grop">
+            <label for="">連絡電話</label>
+            <input type="text" name="uMobile" class="form_control" required />
+        </div>
+        <div class="form_grop">
+            <button type="submit" class="btn_submit">註冊</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

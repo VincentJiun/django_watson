@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}Contact Us{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="../static/css/contact.css">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="contact_title">聯絡我們</h2>
+    <form action="" class="contact_form" method="post">
+        <!-- 若傳送方式為 post時 必須加上 csrf_token -->
+        {% csrf_token %}
+        <div class="form_grop">
+            <label for="">姓名</label>
+            <input type="text" name="userName" class="form_control" required />
+        </div>
+        <div class="form_grop">
+            <label for="">Email</label>
+            <input type="email" name="userEmail" class="form_control" required />
+        </div>
+        <div class="form_grop">
+            <label for="">標題</label>
+            <input type="text" name="uSubject" class="form_control" required />
+        </div>
+        <div class="form_grop">
+            <label for="">問題描述</label>
+            <textarea type="text" name="uContent" class="form_control" rows="10" required></textarea>
+        </div>
+
+        <div class="form_grop">
+            <button type="submit" class="btn_submit">送出</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

@@ -20,6 +20,8 @@ from django.urls import path, include
 from news.views import index, news
 from travel.views import travelInfo
 from product.views import productInfo
+from contact.views import contact
+from member.views import register
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,4 +29,6 @@ urlpatterns = [
     path('news/', news, name='news'),
     path('travel/', travelInfo, name='travelInfo'),
     path('product/', productInfo, name='productInfo'),
+    path('contact/', contact, name='contact'),
+    path('register/', register, name='register'),
 ]
