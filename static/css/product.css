@@ -1,0 +1,34 @@
+.searchBar{
+    height: 100px;
+    padding-top: 100px;
+    padding-left: 10%;
+}
+
+.products{
+    max-width: 100%;
+    margin-top: 60px;
+}
+
+.products .productsInfo{
+    width: 23%;
+    float: left;
+    min-height: 400px;
+    margin-left: 1.5%;
+    margin-top: 20px;
+}
+
+.productsInfo img{
+    width: 80%;
+}
+
+.productsInfo span{
+    color: #c3c3c3;
+    font-size: 18px;
+}
+
+.pages{
+    float: left;
+    height: 60px;
+    padding-top: 100px;
+    padding-left: 45%;
+}

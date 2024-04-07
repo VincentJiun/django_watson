@@ -7,7 +7,7 @@ class Goods(models.Model):
     price = models.IntegerField()
     photo_url = models.CharField(max_length=200)
     goods_url = models.CharField(max_length=200)
-    discount = models.FloatField()
+    discount = models.IntegerField()
     created_date = models.DateField(auto_now_add=True)
 
     class Meta:

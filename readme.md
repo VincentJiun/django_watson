@@ -173,6 +173,7 @@ python manage.py migrate
 python manage.py createsuperuser
 ```
 - 按照提示輸入帳號密碼即可登入 Django 後台
+- 本次專案: account:vincent, password:Egg790508
 
 ### MySQL vs Django 資料庫指令
 
@@ -256,4 +257,5 @@ python manage.py createsuperuser
 - 註冊資料表內容至後端 admin 
 
 ## 透過爬蟲 利用外部資料填入資料庫
-- 本次專案 travel.py & t_sql.py
+- 本次專案 travel.py & t_sql.py -> travel app
+- 本次專案 goods.py & t_sql.py -> product app
