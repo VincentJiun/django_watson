@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="../static/css/login.css">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="contact_title">會員登入</h2>
+    <span class="message">{{msg}}</span>
+    <form action="" method="post" class="contant_form">
+        {% csrf_token %}
+        <div class="form_grop">
+            <label for="">帳號</label>
+            <input type="email" name="uEmail" class="form_control" placeholder="請輸入Email" required />
+        </div>
+        <div class="form_grop">
+            <label for="">密碼</label>
+            <input type="password" name="uPassword" class="form_control" placeholder="請輸入密碼" required />
+        </div>
+        <div class="form_grop">
+            <button type="submit" class="btn_submit">登入</button>
+            <p>尚未<a href="/register">註冊</a>帳號?</p>
+        </div>
+    </form>
+</div>
+{% endblock %}

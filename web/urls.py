@@ -21,7 +21,7 @@ from news.views import index, news
 from travel.views import travelInfo
 from product.views import productInfo
 from contact.views import contact
-from member.views import register
+from member.views import register, login, logout
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -31,4 +31,6 @@ urlpatterns = [
     path('product/', productInfo, name='productInfo'),
     path('contact/', contact, name='contact'),
     path('register/', register, name='register'),
+    path('login/', login, name='login'),
+    path('logout', logout, name='logout'),
 ]

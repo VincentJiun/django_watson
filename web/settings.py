@@ -143,3 +143,9 @@ STATICFILES_DIRS = (
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# 瀏覽器關閉時，Session 就結束
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
+# 設定 Cookie 存在時間 60*30 (秒)
+SESSION_COOKIE_AGE = 1800

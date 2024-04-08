@@ -1,0 +1,27 @@
+.container{
+    margin-top: 100px;
+    margin-left: 35%;
+    margin-bottom: 10%;
+}
+
+.contact_title{
+    margin-bottom: 30px;
+}
+
+.message{
+    color: red;
+}
+
+.contant_form{
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0.5em 0.6em;
+    line-height: 1.15;
+    width: 40%;
+    margin-bottom: 10px;
+    font-size: 15px;
+}
+
+.form_grop{
+    margin: 5%;
+}
