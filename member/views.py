@@ -70,3 +70,36 @@ def logout(request):
     response.delete_cookie('UMail')
 
     return response
+
+def changepassword(request):
+    # 判斷是否登入，若沒有登入直接使用該頁面，就會直接導回登入頁面
+    if 'memMail' in request.session and 'isAlive' in request.session:
+        msg  = ''
+        if 'oldpwd' in request.POST:
+            oldpwd = request.POST['oldpwd']
+            newpwd = request.POST['newpwd']
+            checkpwd = request.POST['checkpwd']
+            # 原密碼加密 確認
+            oldpwd = hashlib.sha3_256(oldpwd.encode('utf-8')).hexdigest()
+            newpwd = hashlib.sha3_256(newpwd.encode('utf-8')).hexdigest()
+            checkpwd = hashlib.sha3_256(checkpwd.encode('utf-8')).hexdigest()
+            # 從 session 抓取使用者等入時的email
+            email = request.session['memMail']
+            # 查詢資料宗是否有該使用者
+            obj = Member.objects.filter(email=email, password=oldpwd).count()
+            # 若有該使用者
+            if obj > 0:
+                # 抓取 該使用者物件
+                user = Member.objects.get(email=email)
+                if newpwd == checkpwd:
+                    user.password = newpwd
+                    user.save()
+                    msg = '密碼變更成功，請使用新密碼登入!!!'
+                else:
+                    msg = '請重新確認密碼!!!'
+            else:
+                msg = '密碼輸入錯誤，請重新輸入再變更!!!'
+        return render(request, 'changepassword.html', locals())
+    else:
+        return HttpResponseRedirect('/login')
+

@@ -21,7 +21,8 @@ from news.views import index, news
 from travel.views import travelInfo
 from product.views import productInfo
 from contact.views import contact
-from member.views import register, login, logout
+from member.views import register, login, logout, changepassword
+from cart.views import cartInfo, addtocaart
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -33,4 +34,8 @@ urlpatterns = [
     path('register/', register, name='register'),
     path('login/', login, name='login'),
     path('logout', logout, name='logout'),
+    path('changepassword/', changepassword, name='changepassword'),
+    path('cart/', cartInfo, name='cart'),
+    path('addtocaart/<str:ctype>/<int:productid>/', addtocaart),
+    path('addtocaart/<str:ctype>/', addtocaart)
 ]
