@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}購物車內容{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="../static/css/cartorder.css">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="cartDiv">
+        <form action="/cartok/" method="post" name="form1" id="form1">
+            {% csrf_token %}
+            <tr>
+                <th align="left">商品名稱</th>
+                <th width="80" align="center">單價</th>
+                <th width="80" align="center">數量</th>
+                <th width="100" align="center">金額</th>
+            </tr>
+            
+        </form>
+    </div>
+</div>
+{% endblock %}

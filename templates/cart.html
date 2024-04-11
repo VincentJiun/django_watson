@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block title %}購物車{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="../static/css/cart.css">
+{% endblock %}
+
+{% block js %}
+<script src="../static/js/cart.js"></script>
+{% endblock %}
+
+{% block content %}
+<div class="cart_container">
+<div class="cartDiv">
+    <form action="/addtocart/update/" method="post" name="form1" id="form1">
+        {% csrf_token %}
+        <table width="90%" border="0" align="center" cellpadding="4" cellspacing="0">
+            <tr>
+                <th width="60" align="center">取消</th>
+                <th align="left">商品名稱</th>
+                <th width="80" align="center">單價</th>
+                <th width="80" align="center">數量</th>
+                <th width="80" align="center">金額</th>
+            </tr>
+            <!-- forloop 數量與屬性:
+                forloop.counter: 由1開始遞增至總數結束
+                forloop.counter0: 由0開始遞增至總數結束
+                forloop.revcounter: 由總數開始遞減到1
+                forloop.revcounter0: 由總數開始遞減到0
+
+                forloop.first: 判斷是否是第一次for 迴圈， 回傳值為:True 或 False
+                forloop.last: 判斷是否是最後一次for 迴圈, 回傳值為:True 或 False
+            -->
+            {% for unit in goodstitle %}
+                <tr>
+                    <td bgcolor="#0f0"><a href="/addtocart/delete/{{forloop.counter0}}" class="delcart"
+                        onclick="confirmLink('確定刪除此商品?'); return document.returnValue">刪除</a></td>
+                    <td align="left">{{unit.0}}</td>
+                    <td width="80" align="center">$ {{unit.1}}</td>
+                    <td width="80" align="center"><input type="text" name="qty{{forloop.counter0}}" id="qty{{forloop.counter0}}" value="{{unit.2}}" size="2" /></td>
+                    <td width="100" align="center"><strong>$ {{unit.3}}</strong></td>
+                </tr>
+            {% endfor %}
+            <tr>
+                <td colspan="4" align="left" bgcolor="#ffffff" class="upline"><strong>小計</strong></td>
+                <td align="center" bgcolor="#ffffff" class="upline">$ {{total}}</td>
+            </tr>
+            {% if total < 10000 %}
+                <tr>
+                    <td colspan="4" align="left" bgcolor="#ffffff" class="upline"><strong>運費</strong></td>
+                    <td align="center" bgcolor="#ffffff" class="upline">$ 100</td>
+                </tr>
+            {% endif %}
+            <tr>
+                <td colspan="4" align="left" bgcolor="#ffffff" class="upline"><strong>總計</strong></td>
+                <td align="center" bgcolor="#ffffff" class="upline"><strong><font color="#ff0000">$ {{grandtotal}}</font></strong></td>
+            </tr>
+        </table>
+        <table border="0" align="center" cellpadding="10" cellspacing="0">
+            <td><input type="button" name="Continue" value="繼續購物" onclick="window.location='/product/'" /></td>
+            <td><input type="submit" name="Submit" value="更新購物車" /></td>
+            <td><input type="button" name="Empty" value="清空購物車" onclick="window.location='/addtocart/empty/'" /></td>
+            <td><input type="button" name="Order" value="結帳" onclick="window.location='/cartorder/'" /></td>
+        </table>
+    </form>
+</div>
+</div>
+
+{% endblock %}
