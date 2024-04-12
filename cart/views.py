@@ -43,8 +43,8 @@ def addtocaart(request, ctype=None, productid=None):
             # 用程式檢查購物車中是否有重複的
             for unit in cartlist:
                 if product.name == unit[0]:
-                    unit[2] = str(int(unit[2]+1)) # 數量加1
-                    unit[3] = str(int(unit[3]+product.price))
+                    unit[2] = str(int(unit[2])+1) # 數量加1
+                    unit[3] = str(int(unit[3])+product.price)
                     flag = False # 表示商品有相同的，修改數量
                     break
             if flag:
