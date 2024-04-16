@@ -31,7 +31,7 @@ def cartInfo(request):
     return render(request, 'cart.html', locals())
 
 # 加入購物車，並沒有將資料寫入至資料表中
-def addtocaart(request, ctype=None, productid=None):
+def addtocart(request, ctype=None, productid=None):
     global cartlist
 
     if ctype == 'add':
@@ -115,5 +115,79 @@ def cartorder(request):
         email = request.session['memMail']
 
         return render(request, 'cartorder.html', locals())
+    else:
+        return redirect('/login')
+    
+def cartok(request): # 已確認資料並送出， 寫入資料庫並清空購物車
+    if 'memMail' in request.session and 'isAlive' in request.session:
+        if 'cuName' in request.POST:
+            global cartlist, customname, customphone, custommail, customaddress, ordertotal, goodstitle
+
+            total = 0
+            for unit in cartlist:
+                total += int(unit[3])
+
+            if total < 10000:
+                shipping = 100
+
+            else:
+                shipping = 0
+            grandtotal = total + shipping
+
+            customname = request.POST.get('cuName')
+            customphone =request.POST.get('cuPhone')
+            customaddress = request.POST.get('cuAdd')
+            custommail = request.POST.get('cuMail')
+            payType = request.POST.get('payType')
+
+            # 訂單分別要寫入: 訂單、訂單明細資料表中
+            unitorder = Cart.objects.create(subtitle=total, shipping=shipping, grandtotle=grandtotal, custom_name=customname, custom_mail=custommail, custom_mobile=customphone, paytype=payType, custom_address=customaddress)
+
+            # 新增明細
+            for unit in cartlist:
+                goodstitle.append(unit[0]) # 將商品名稱
+                total = int(unit[1])*int(unit[2])
+                # 外來鍵要放入 新增訂單後，回傳的該訂單資訊
+                unitdetail = Order.objects.create(dorder=unitorder, pname=unit[0], uni_price=unit[1], quantity=unit[2], dtotal=total)
+
+            orderid = unitorder.id # 取的訂單編號
+            name = unitorder.custom_name
+            email = unitorder.custom_mail
+            cartlist = list()
+            request.session['cartlist']=cartlist
+
+            if payType == '信用卡':
+                return HttpResponseRedirect('/creditcart', locals())
+            else:
+                return render(request, 'cartok.html', locals())
+
+    else:
+        return redirect('/login')
+    
+# 查看單筆訂單資料
+def cartordercheck(request):
+    if ('orderid' in request.GET) and ('custommail' in request.GET):
+        orderid = request.GET.get('orderid', '')
+        custommail = request.GET.get('custommail', '')
+
+        if orderid =='' or custommail=='':
+            nosearch = 1
+        else:
+            order = Cart.objects.filter(id=orderid, custom_mail=custommail).first() # 用 first()表示 只抓取第一筆資料
+
+            if order == None:
+                notfound = 1
+            else:
+                details  = Order.objects.filter(dorder=order)
+    
+    return render(request, 'cartordercheck.html', locals())
+
+def myorder(request):
+    if 'memMail' in request.session and 'isAlive' in request.session:
+        email = request.session['emeMail']
+
+        order = Cart.objects.filter(custommail=email)
+
+        return render(request, 'myorder.html', locals())
     else:
         return redirect('/login')

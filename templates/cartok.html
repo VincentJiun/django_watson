@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}購物完成{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="../static/css/cartok.css">
+{% endblock %}
+
+{% block content %}
+    <div class="containter" margin-top="150px">
+        <div class="cartDiv">
+            <p class="title">訂購完成</p>
+            <p class="subject">非常感謝您的訂購，我們會盡快處理您的訂單!</p>
+            <p class="desc">親愛的 <strong>{{name}}</strong> (先生/小姐)， 您的訂單以建立。</p>
+            <p class="desc"><a href="/cartordercheck/?orderid={{orderid}}&customemail={{email}}">訂單詳細資訊</a></p>
+        </div>
+    </div>
+{% endblock %}

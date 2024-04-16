@@ -22,7 +22,7 @@ from travel.views import travelInfo
 from product.views import productInfo
 from contact.views import contact
 from member.views import register, login, logout, changepassword
-from cart.views import cartInfo, addtocaart, cartorder
+from cart.views import cartInfo, addtocart, cartorder, cartok, cartordercheck, myorder
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -36,7 +36,10 @@ urlpatterns = [
     path('logout', logout, name='logout'),
     path('changepassword/', changepassword, name='changepassword'),
     path('cart/', cartInfo, name='cart'),
-    path('addtocart/<str:ctype>/<int:productid>/', addtocaart),
-    path('addtocart/<str:ctype>/', addtocaart),
+    path('addtocart/<str:ctype>/<int:productid>/', addtocart),
+    path('addtocart/<str:ctype>/', addtocart),
     path('cartorder/', cartorder, name='cartorder'),
+    path('cartok/', cartok, name='cartok'),
+    path('cartordercheck/', cartordercheck, name='cartordercheck'),
+    path('myorder/', myorder, name='myorder')
 ]
