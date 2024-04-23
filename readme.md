@@ -298,4 +298,7 @@ delete from (table) where (條件式);
 ### 購物車流程
 - 產品 -> add 購物車(多次新增) -> 購物車清單(改數量、刪除購買) -> 結帳 (運費 (滿多少免運)) -> 付款方式: 刷卡(刷卡頁面)、 匯款(客戶回報匯款) -> 訂單成立(完成) -> 導回 訂單管理頁面
 
+## 金流串接 - 綠界
 
+### Python - SDK
+- https://github.com/ECPay/ECPayAIO_PYTHON

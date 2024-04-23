@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}訂單紀錄{% endblock %}
+
+{% block content %}
+<div style="margin-top:150px;"></div>
+<div class="cartDiv">
+    <p class="title">我的訂單紀錄</p>
+    <table width="90%" border="0" align="center" cellpadding="4" cellspacing="1">
+        <tr>
+            <th bgcolor="#cccccc">訂單編號</th>
+            <th bgcolor="#cccccc">訂單日期</th>
+            <th bgcolor="#cccccc">付款金額</th>
+            <th bgcolor="#cccccc">付款方式</th>
+        </tr>
+        {% for unit in order %}
+        <tr>
+            <td align="center"><a href="/cartordercheck/?orderid={{unit.id}}&customemail={{request.session.memMail}}">{{unit.id}}</a></td>
+            <td align="center">{{unit.created_date}}</td>
+            <td align="center">{{unit.grandtotle}}</td>
+            <td align="center">{{unit.paytype}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}
