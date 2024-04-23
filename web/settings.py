@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'contact',
     'member',
     'cart',
+    'photos',
 ]
 
 MIDDLEWARE = [
@@ -139,6 +140,11 @@ STATICFILES_DIRS = (
     ('css', os.path.join(STATIC_ROOT, 'css').replace('\\','/')),
     ('js', os.path.join(STATIC_ROOT, 'js').replace('\\','/')),
 )
+
+# 設定多媒體資料夾
+MEDIA_URL = 'media/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field

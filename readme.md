@@ -302,3 +302,13 @@ delete from (table) where (條件式);
 
 ### Python - SDK
 - https://github.com/ECPay/ECPayAIO_PYTHON
+
+## 使用者上傳圖片至網站 (安全性)
+
+### 偽檔
+1. 問題截圖回傳
+2. 上傳PDF
+3. 大頭照
+
+- 上傳:要不要限制大小、格式
+- 其他方法: 圖床 ==> 概念 -> 將字字的圖片上傳至其他網站服務主機 再將url貼製我們的網站中

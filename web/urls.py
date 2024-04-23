@@ -24,6 +24,13 @@ from contact.views import contact
 from member.views import register, login, logout, changepassword
 from cart.views import cartInfo, addtocart, cartorder, cartok, cartordercheck, myorder, ECPayCredit
 
+from django.conf import settings
+from django.conf.urls.static import static
+
+from photos.views import uploadFile
+
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name='index'),
@@ -43,4 +50,9 @@ urlpatterns = [
     path('cartordercheck/', cartordercheck, name='cartordercheck'),
     path('myorder/', myorder, name='myorder'), 
     path('creditcart/', ECPayCredit, name='ecpayCredit'),
+    path('photos/', uploadFile, name='uploadFile'),
 ]
+
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
